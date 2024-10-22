@@ -1,9 +1,9 @@
-import { express } from "express";
-import { fetchUser } from "../middleware/fetch_user";
-import { Record } from "../models/record";
-import { body, validationResult } from "express-validator";
-
+const express = require('express');
 const router = express.Router();
+
+const fetchUser = require('../middleware/fetch_user.js')
+const Record = require('../models/record.js')
+const { body, validationResult } = require('express-validator');
 
 // Route 1: Get all the entries of logged in user :Get '/api/record/fetch'. Authentication required.
 router.get("/fetch", fetchUser, async (req, res) => {

@@ -1,12 +1,14 @@
-import { express } from "express";
-import { User } from "../models/user";
-import { body, validationResult } from "express-validator";
-import { bcrypt } from "bcryptjs";
-import { jwt } from "jsonwebtoken";
-import { fetchUser } from "../middleware/fetch_user";
-import { JWT_SECRET } from "../const";
-
+const express = require("express");
 const router = express.Router();
+const User = require("../models/user.js");
+
+const { body, validationResult } = require("express-validator");
+
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+const fetchUser = require("../middleware/fetch_user.js");
+
+const JWT_SECRET = process.env.ENV_JWT_SECRET;
 
 // Route 1: Create a user using :Route '/api/auth/create'. Doesn't require Authentication
 router.post(
@@ -19,7 +21,7 @@ router.post(
     }),
   ],
 
-  async (rq, res) => {
+  async (req, res) => {
     let success = false;
 
     // If there are error, Return bad request and the errors

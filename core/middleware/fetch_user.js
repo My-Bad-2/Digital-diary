@@ -1,5 +1,5 @@
-import { JWT_SECRET } from "../const";
-import { jwt } from 'jsonwebtoken';
+const jwt = require('jsonwebtoken');
+const JWT_SECRET = process.env.ENV_JWT_SECRET;
 
 const fetchUser = (req, res, next) => {
   // Get the user from the jwt token and add id to req object
