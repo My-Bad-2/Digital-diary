@@ -1,0 +1,1 @@
+const JWT_SECRET = proces.env.ENV_JWT_SECRET;
