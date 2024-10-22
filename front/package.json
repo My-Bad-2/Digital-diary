@@ -1,0 +1,25 @@
+{
+  "name": "frontend",
+  "packageManager": "yarn@4.5.1",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build"
+  },
+  "dependencies": {
+    "@headlessui/react": "^2.1.10",
+    "@heroicons/react": "^2.1.5",
+    "headlessui": "^0.0.0",
+    "heroicons": "^2.1.5",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router": "^6.27.0",
+    "react-router-dom": "^6.27.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.11",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react-swc": "^3.7.1",
+    "tailwindcss": "^3.4.14",
+    "vite": "^5.4.9"
+  }
+}
