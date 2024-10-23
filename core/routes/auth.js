@@ -33,7 +33,7 @@ router.post(
 
     // Check whether a user with same email address exists
     try {
-      let user = await user.findOne({ email: req.body.email });
+      let user = await User.findOne({ email: req.body.email });
 
       if (user) {
         return res.status(400).json({
@@ -85,7 +85,7 @@ router.post(
     const { email, password } = req.body;
 
     try {
-      let user = await user.findONe({ email });
+      let user = await User.findONe({ email });
 
       if (!user) {
         return res.status(400).json({
@@ -127,7 +127,7 @@ router.post(
 router.post("/get", fetchUser, async (req, res) => {
   try {
     var user_id = req.user.id;
-    const user = await user.findById(user_id).select("-password");
+    const user = await User.findById(user_id).select("-password");
     res.send(user);
   } catch (error) {
     console.error(error.message);

@@ -20,7 +20,7 @@ export default function RecordItem(props) {
           <i
             className="fa fa-edit mx-2"
             onClick={() => {
-              updateRecord(Record);
+              updateRecord(record);
             }}
           ></i>
         </div>

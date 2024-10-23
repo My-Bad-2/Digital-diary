@@ -2,14 +2,14 @@ import React from "react";
 import recordContext from "./context";
 import { useState } from "react";
 
-const host = "https://localhost:5000";
+const host = "http://localhost:5000";
 
 const RecordState = (props) => {
   const recordInitial = [];
   const [records, setRecords] = useState(recordInitial);
 
   // Get all records from the backend
-  const getRecord = async () => {
+  const getRecords = async () => {
     const response = await fetch(`${host}/api/record/fetch`, {
       method: "GET",
       headers: {
@@ -19,13 +19,13 @@ const RecordState = (props) => {
     });
 
     const json = await response.json();
-    setRecords(json);
+    setRecords((records || []).concat(json));
   };
 
   // Add a record
   const addRecord = async (title, data, tag) => {
     const response = await fetch(`${host}/api/record/add`, {
-      method: "GET",
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
         "auth-token": localStorage.getItem("token"),
@@ -34,7 +34,7 @@ const RecordState = (props) => {
     });
 
     const json = await response.json();
-    setRecords(records.concat(json));
+    setRecords((records || []).concat(json));
   };
 
   // Delete a record
@@ -48,7 +48,7 @@ const RecordState = (props) => {
     });
 
     const json = await response.json();
-    setRecords(records.concat(json));
+    setRecords((records || []).concat(json));
   };
 
   // Edit a record
@@ -75,12 +75,13 @@ const RecordState = (props) => {
         break;
       }
     }
-    setRecords(records.concat(json));
+
+    setRecords((records || []).concat(json));
   };
 
   return (
     <recordContext.Provider
-      value={{ records, addRecord, deleteRecord, editRecord, getRecord }}
+      value={{ records, addRecord, deleteRecord, editRecord, getRecords }}
     >
       {props.children}
     </recordContext.Provider>

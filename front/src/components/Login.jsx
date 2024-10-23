@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { redirect } from "react-router-dom";
 
-const host = "https://localhost:5000";
+const host = "http://localhost:5000";
 
 export const Login = (props) => {
 

@@ -8,7 +8,7 @@ export default function Records(props) {
   const context = useContext(recordContext);
   const { records, getRecords, editRecord } = context;
   
-  const [note, setRecord] = useState({
+  const [record, setRecord] = useState({
     id: "",
     etitle: "",
     edata: "",
@@ -38,14 +38,14 @@ export default function Records(props) {
 
   const handleOnClick = (e) => {
     e.preventDefault();
-    editRecord(note.id, note.etitle, note.edata, note.etag);
+    editRecord(record.id, record.etitle, record.edata, record.etag);
     ref.current.click();
     props.showAlert("Updated Successfully", "success");
   };
 
   const onChange = (e) => {
     console.log("onChange");
-    setRecord({ ...note, [e.target.name]: e.target.value });
+    setRecord({ ...record, [e.target.name]: e.target.value });
   };
 
   return (
@@ -91,7 +91,7 @@ export default function Records(props) {
                     className="form-control"
                     id="etitle"
                     name="etitle"
-                    value={note.etitle}
+                    value={record.etitle}
                     aria-describedby="emailHelp"
                     minLength={5}
                     required
@@ -107,7 +107,7 @@ export default function Records(props) {
                     className="form-control"
                     id="edata"
                     name="edata"
-                    value={note.edata}
+                    value={record.edata}
                     minLength={5}
                     required
                     onChange={onChange}
@@ -122,7 +122,7 @@ export default function Records(props) {
                     className="form-control"
                     id="etag"
                     name="etag"
-                    value={note.etag}
+                    value={record.etag}
                     onChange={onChange}
                     minLength={5}
                     required
@@ -139,7 +139,7 @@ export default function Records(props) {
                 Close
               </button>
               <button
-                disabled={note.etitle.length < 5 || note.edata.length < 5}
+                disabled={record.etitle.length < 5 || record.edata.length < 5}
                 type="submit"
                 className="btn btn-primary"
                 onClick={handleOnClick}
@@ -153,13 +153,13 @@ export default function Records(props) {
       <div className="row my-3">
         <h2>Your Records</h2>
         {records.length > 0 ? (
-          records.map((note) => {
+          records.map((record) => {
             return (
               <RecordItem
-                note={note}
+                record={record}
                 updateRecord={updateRecord}
                 showAlert={props.showAlert}
-                key={note._id}
+                key={record._id}
               />
             );
           })
